@@ -30,7 +30,7 @@ class Contato implements JsonSerializable{
     private $tipo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Pessoa")
+     * @ORM\ManyToOne(targetEntity="Pessoa", inversedBy="contatos")
      */
     private $pessoa;
 

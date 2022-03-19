@@ -30,6 +30,12 @@ class Pessoa implements JsonSerializable{
      * @ORM\Column(type="string")
      */
     private $cpf;
+
+     /**
+    * @ORM\OneToMany(targetEntity="Contato", mappedBy="pessoa", cascade={"remove"})
+    * @var ArrayCollection|Contato[]
+    */
+    private $contatos;
      
     
     public function getId()
