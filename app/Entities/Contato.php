@@ -6,16 +6,32 @@ use JsonSerializable;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="contatos")
+ */
 class Contato implements JsonSerializable{
 
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-
+    /**
+     * @ORM\Column(type="boolean")
+     */
     private $tipo;
 
-
+    /**
+     * @ORM\Column(type="string")
+     */
     private $descricao;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Pessoa")
+     */
     private $pessoa;
 
     public function getId()
@@ -53,5 +69,14 @@ class Contato implements JsonSerializable{
     public function getPessoa()
     {
         return $this->pessoa;
+    }
+
+    
+    public function jsonSerialize() {
+        return [
+            "tipo" => $this->tipo,
+            "descricao" => $this->descricao,
+            "pessoa"=> $this->pessoa
+        ];
     }
 }
