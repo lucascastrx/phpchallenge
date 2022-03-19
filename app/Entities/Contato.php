@@ -20,14 +20,14 @@ class Contato implements JsonSerializable{
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $tipo;
-
-    /**
      * @ORM\Column(type="string")
      */
     private $descricao;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $tipo;
 
     /**
      * @ORM\ManyToOne(targetEntity="Pessoa")
