@@ -15,5 +15,38 @@ class PessoaRepository{
     }
 
     
+    public function list(){
+        $pessoaRepository = $this->em->getRepository(Pessoa::class);
+        $pessoas = $pessoaRepository->findAll();
+       return $pessoas;
+   }
+
+   public function findById($id)
+   {
+       $pessoa = $this->em->find(Pessoa::class, (int)$id);
+       $jsonData = json_encode($pessoa);
+       return $jsonData;
+   }
+
+   public function save(Pessoa $pessoa)
+   {
+       $this->em->persist($pessoa);
+       $this->em->flush();
+   }
+
+   public function update($array, $id)
+   {
+       $pessoa = $this->em->find(Pessoa::class, (int)$id);
+       $updatedPessoa = PessoaFactory::update($pessoa, $array);
+       $this->em->flush();
+   }
+
+   public function delete($id)
+   {
+       $pessoa = $this->em->find(Pessoa::class, (int)$id);
+       $this->em->remove($pessoa);
+       $this->em->flush();
+   }
+
 
 }
