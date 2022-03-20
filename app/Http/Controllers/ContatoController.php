@@ -43,8 +43,8 @@ class ContatoController extends Controller
     }
 
      
-    public function destroy($id)
+    public function destroy($pessoaId, $contatoId)
     {
-        //
+        $this->repository->delete($contatoId);
     }
 }
