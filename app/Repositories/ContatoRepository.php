@@ -82,7 +82,7 @@ class ContatoRepository{
    public function update($array, $id)
    {
        $contato = $this->em->find(Contato::class, (int)$id);
-       $updatedContato = ContatoFactory::update($contato, $array);
+       $updatedContato = ContatoFactory::update($array, $contato);
        $this->em->flush();
    }
 

@@ -18,5 +18,23 @@ class ContatoFactory {
         return $contato;
     }
 
+    
+    public static function update($array, Contato $contato)
+    {   
+        if(count($array)>1){
+            $contato->setTipo($array["tipo"]);
+            $contato->setDescricao($array["descricao"]);
+            return $contato;
+        }else{
+            if(strcmp(key($array), "tipo") == 0){
+                $contato->setTipo($array["tipo"]);
+                return $contato;
+            }else{
+                $contato->setDescricao($array["descricao"]);
+                return $contato;
+            }
+        }
+        
+    }
 
 }

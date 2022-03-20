@@ -36,9 +36,10 @@ class ContatoController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update(Request $request, $pessoaId, $contatoId)
     {
-        //
+        $array = $request->all();
+        $this->repository->update($array, $contatoId);
     }
 
      
