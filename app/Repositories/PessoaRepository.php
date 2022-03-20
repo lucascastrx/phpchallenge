@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entities\Pessoa;
+use App\Factories\PessoaFactory;
 
 class PessoaRepository{
 
@@ -47,6 +48,5 @@ class PessoaRepository{
        $this->em->remove($pessoa);
        $this->em->flush();
    }
-
-
+   
 }
