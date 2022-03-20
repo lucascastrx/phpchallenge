@@ -22,9 +22,11 @@ class ContatoController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(Request $request, $pessoaId)
     {
-        //
+        $array = $request->all();
+        $word = $this->repository->save($array, $pessoaId);
+        return $word;
     }
 
     

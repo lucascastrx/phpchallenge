@@ -9,6 +9,8 @@ use Doctrine\ORM\Query\Parameter;
 use App\Entities\Contato;
 use App\Entities\Pessoa;
 
+use App\Factories\ContatoFactory;
+
 class ContatoRepository{
 
     protected $em;
@@ -65,10 +67,16 @@ class ContatoRepository{
         return $result;
    }
 
-   public function save(Contato $contato)
+   public function save($array, $pessoaId)
    {
-       $this->em->persist($contato);
-       $this->em->flush();
+        if(count($array)<2) return 'Invalido';
+        
+        $pessoa = $this->em->find(Pessoa::class, (int)$pessoaId);
+        if($pessoa == null) return 'Pessoa inexistente';
+
+        $contato = ContatoFactory::build($array, $pessoa);
+        $this->em->persist($contato);
+        $this->em->flush();
    }
 
    public function update($array, $id)
