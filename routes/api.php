@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('pessoas', App\Http\Controllers\PessoaController::class);
+Route::apiResource('pessoas.contatos', App\Http\Controllers\ContatoController::class);

@@ -5,6 +5,9 @@ namespace App\Entities;
 use JsonSerializable;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use App\Entities\Pessoa;
 
 /**
  * @ORM\Entity
@@ -18,6 +21,11 @@ class Contato implements JsonSerializable{
      * @ORM\Column(type="integer")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Pessoa")
+     */
+    private $pessoa;
 
     /**
      * @ORM\Column(type="string")
@@ -29,10 +37,6 @@ class Contato implements JsonSerializable{
      */
     private $tipo;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Pessoa", inversedBy="contatos")
-     */
-    private $pessoa;
 
     public function getId()
     {
@@ -74,9 +78,14 @@ class Contato implements JsonSerializable{
     
     public function jsonSerialize() {
         return [
+            "id" => $this->id,
             "tipo" => $this->tipo,
             "descricao" => $this->descricao,
-            "pessoa"=> $this->pessoa
+            "pessoa"=> [
+                "id" => $this->pessoa->getId(),
+                "nome" => $this->pessoa->getNome(),
+                "cpf" => $this->pessoa->getCpf()
+            ]
         ];
     }
 }

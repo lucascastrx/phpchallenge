@@ -7,6 +7,8 @@ use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use App\Entities\Contato;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="pessoas")
@@ -17,7 +19,6 @@ class Pessoa implements JsonSerializable{
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @var int
      */
     private $id;
 
@@ -30,14 +31,7 @@ class Pessoa implements JsonSerializable{
      * @ORM\Column(type="string")
      */
     private $cpf;
-
-     /**
-    * @ORM\OneToMany(targetEntity="Contato", mappedBy="pessoa", cascade={"remove"})
-    * @var ArrayCollection|Contato[]
-    */
-    private $contatos;
      
-    
     public function getId()
     {
         return $this->id;
@@ -65,8 +59,10 @@ class Pessoa implements JsonSerializable{
 
     public function jsonSerialize() {
         return [
+            "id" => $this->id,
             "nome" => $this->nome,
-            "cpf" => $this->cpf
+            "cpf" => $this->cpf,
+            
         ];
     }
 }

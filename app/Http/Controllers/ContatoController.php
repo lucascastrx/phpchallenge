@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\ContatoRepository;
+
 class ContatoController extends Controller
 {
     
-    public function index()
+    protected $repository;
+
+    public function __construct(ContatoRepository $repository)
     {
-        //
+        $this->repository = $repository;
+    }
+
+    public function index($pessoaId)
+    {
+       return $this->repository->list($pessoaId);
     }
 
     

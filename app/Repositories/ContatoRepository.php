@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entities\Contato;
+use App\Entities\Pessoa;
 
 class ContatoRepository{
 
@@ -15,10 +16,34 @@ class ContatoRepository{
     }
 
     
-    public function list(){
-        $contatoRepository = $this->em->getRepository(Contato::class);
-        $contatos = $contatoRepository->findAll();
-       return $contatos;
+    public function list($pessoaId){
+        // $dql = "SELECT c, p FROM Contato c JOIN c.pessoa p WHERE c.pessoa.id = p.id";
+        // $query = $this->em->createQuery($dql);
+        // $query->setMaxResults(2);
+        // return $query->getResult();
+
+        // $builder = $this->em->createQueryBuilder();
+        // $result = $builder->select('c')
+        //         ->from(Contato::class, 'c')
+        //         ->join()
+        //         ->where('c.id = ?1')
+        //         ->setParameter(1,1)
+        //         ->getQuery()
+        //         ->getResult();
+        // return $result;
+
+        $builder = $this->em->createQueryBuilder();
+        $result = $builder->select('c')
+                ->from(Contato::class, 'c')
+                ->innerJoin('c.pessoa', 'p')
+                ->where('p.id = ?1')
+                ->setParameter(1,$pessoaId)
+                ->getQuery()
+                ->getResult();
+        return $result;
+    //     $contatoRepository = $this->em->getRepository(Contato::class);
+    //     $contatos = $contatoRepository->findAll();
+    //    return $contatos;
    }
 
    public function findById($id)
