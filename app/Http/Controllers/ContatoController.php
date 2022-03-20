@@ -28,9 +28,9 @@ class ContatoController extends Controller
     }
 
     
-    public function show($id)
+    public function show($pessoaId, $contatoId)
     {
-        //
+        return $this->repository->findById($pessoaId, $contatoId);
     }
 
     

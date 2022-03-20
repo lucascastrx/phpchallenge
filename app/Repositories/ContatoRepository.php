@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 
 use App\Entities\Contato;
 use App\Entities\Pessoa;
@@ -46,11 +48,21 @@ class ContatoRepository{
     //    return $contatos;
    }
 
-   public function findById($id)
+   public function findById($pessoaId, $contatoId)
    {
-       $contato = $this->em->find(Contato::class, (int)$id);
-       $jsonData = json_encode($contato);
-       return $jsonData;
+        $builder = $this->em->createQueryBuilder();
+        $result = $builder->select('c')
+                ->from(Contato::class, 'c')
+                ->innerJoin('c.pessoa', 'p')
+                ->where('p.id = ?1')
+                ->andWhere('c.id = ?2')
+                ->setParameters(new ArrayCollection([
+                    new Parameter('1', $pessoaId),
+                    new Parameter('2', $contatoId),
+                ]))
+                ->getQuery()
+                ->getResult();
+        return $result;
    }
 
    public function save(Contato $contato)
