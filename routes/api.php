@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources('pessoas', App\Http\Controllers\PessoaController::class);
+Route::apiResource('pessoas', App\Http\Controllers\PessoaController::class);

@@ -9,7 +9,7 @@ class PessoaController extends Controller
      
     public function index()
     {
-        //
+        return "ok";
     }
 
      

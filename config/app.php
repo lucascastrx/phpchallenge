@@ -193,7 +193,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
+        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class
     ])->toArray(),
 
 ];
