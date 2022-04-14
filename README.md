@@ -16,14 +16,6 @@ Para visualizar as rotas disponíveis para pessoas e contatos precisa apenas uti
 
 -   php artisan route:list
 
-Infelizmente não foi possível comtemplar todos os requisitos solicitados devido a alguns fatores
-
-Ambientação com uma nova linguagem (Php), framework (Laravel) e ORM (Doctrine)
-
-Integração entre framework e ORM. Por padrão, o Laravel faz uso do Eloquent e para utilizar um ORM
-fora do escopo do framework são necessárias configurações a mais. Isso causa uma curva de aprendizado extra e demanda mais tempo para alinhar de forma que possa funcionar. Apesar de não haver nenhuma dificuldade em usar o Doctrine e entender como ele funciona, ainda assim, houve o trabalho de aprender como integrá-lo com o Laravel.
-
-Recomendo que seja utilizado o Postman ou Insomnia para os testes aos endpoints da API, são ferramentas bastante conhecidas e é possível que já possua conhecimento delas
 
 Pontos de melhoria:
 
